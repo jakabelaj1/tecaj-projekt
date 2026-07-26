@@ -1,47 +1,23 @@
-//navigation bar
-import "./navbar.scss";
-import Library from "../library/Library.jsx";
-import Search from "../search/Search.jsx";
-import {useState} from "react";
+//Navigation
+import React from 'react';
+import "./navbar.scss"
 
 
-const Navigation = () => {
-const [activePage,setActivePage] =useState("library");
-
-const handleNav=(page) => {
-    setActivePage(page);
-};
+const NavigationBar = ({ activeComponent, onNavigate }) => {
+    const handleNavigation = (component) => {
+        onNavigate(component);
+    };
 
     return (
-
         <div className="navbar">
-
-<nav>
-                <ul className="nav-item">
-                    <li
-                        onClick={() => handleNav('Library')}
-                        className={activePage === 'Library' ? 'active' : ''}
-                    >
-                        Library
-                    </li>
-
-                    <li onClick={() => handleNav('Search')}
-                        className={activePage === 'Search' ? 'active' : ''}
-                        >
-                        Search
-                    </li>
+            <nav>
+                <ul>
+                    <li onClick={() => handleNavigation('Library')} className={activeComponent === 'Library' ? 'active' : ''}>Library</li>
+                    <li onClick={() => handleNavigation('Search')} className={activeComponent === 'Search' ? 'active' : ''}>Search</li>
                 </ul>
-</nav>
-            {activePage === 'Library' && <Library />}
-            {activePage === 'Search' && <Search />}
-
-
-
+            </nav>
         </div>
-    )
+    );
+};
 
-
-
-}
-
-export default Navigation;
+export default NavigationBar;

@@ -1,8 +1,27 @@
 //library page
 import React from 'react';
+import "./library.scss"
 
-const library = () => {
-    return <div><h1>library page</h1></div>;
+const Library = () => {
+    return (
+        <>
+        <div className="Library">
+            <h1>Library</h1>
+
+        </div>
+
+
+
+
+
+
+        </>
+
+
+    )
+
+
+
 };
 
-export default library;
+export default Library;

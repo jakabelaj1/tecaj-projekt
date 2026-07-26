@@ -1,0 +1,60 @@
+// src/scss/navbar.scss
+$light-bg-color: #e6e6e6;
+$light-text-color: #000000;
+$light-text-hover:#008000;
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $light-bg-color;
+  color: $light-text-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+
+
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+
+
+    li {
+      cursor: pointer;
+      transition: color 0.3s ease;
+      padding: 0 10px;
+
+      &.active {
+        font-weight: bold;
+        color: $light-text-hover;
+      }
+
+      &:hover {
+        color: $light-text-hover;
+      }
+    }
+  }
+
+
+
+
+
+
+  @media (max-width: 768px) {
+    ul {
+      display: flex;
+      justify-content: center; // Center the items on mobile
+      align-items: center;
+      padding: 15px;
+    }
+
+    li {
+      margin: 0 1rem; // Add some space between items on mobile
+    }
+  }
