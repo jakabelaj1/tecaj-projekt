@@ -1,9 +1,11 @@
 //navigation bar
 import "./navbar.scss";
-import library from "../library/library.jsx";
+import Library from "../library/Library.jsx";
+import Search from "../search/Search.jsx";
 import {useState} from "react";
 
-const navbar = () => {
+
+const Navigation = () => {
 const [activePage,setActivePage] =useState("library");
 
 const handleNav=(page) => {
@@ -17,23 +19,24 @@ const handleNav=(page) => {
 <nav>
                 <ul className="nav-item">
                     <li
-                        onClick={() => handleNav('library')}
-                        className={activePage === 'library' ? 'active' : ''}
+                        onClick={() => handleNav('Library')}
+                        className={activePage === 'Library' ? 'active' : ''}
                     >
                         Library
                     </li>
 
-                    <li onClick={() => handleNav('about')}
-                        className={activePage === 'search' ? 'active' : ''}
+                    <li onClick={() => handleNav('Search')}
+                        className={activePage === 'Search' ? 'active' : ''}
                         >
                         Search
                     </li>
                 </ul>
 </nav>
-            {activePage
+            {activePage === 'Library' && <Library />}
+            {activePage === 'Search' && <Search />}
 
 
-            <h1>Navbar</h1>
+
         </div>
     )
 
@@ -41,4 +44,4 @@ const handleNav=(page) => {
 
 }
 
-export default navbar;
+export default Navigation;
