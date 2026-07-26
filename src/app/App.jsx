@@ -1,6 +1,6 @@
 import 'sass-reset';
 import './App.scss'
-
+import 'navbar/navbar.jsx'
 function App() {
 
     return (
