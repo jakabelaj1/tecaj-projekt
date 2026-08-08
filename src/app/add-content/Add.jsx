@@ -1,85 +1,99 @@
-// src/app/add.jsx
+
 import React, { useState } from 'react';
-import App from "../App.jsx";
+import './add.scss';
 
-
-const Add = ({onClose}) => {
+const Add = ({ onClose }) => {
     const [formData, setFormData] = useState({
         title: '',
-        releaseDate: new Date().toISOString(),
-        imageUrl: '',
+        releaseDate: new Date().toISOString().split('T')[0],
+        imageUrl: ''
     });
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         try {
+            // submit to json-server
             const response = await fetch('http://localhost:3000/data', {
                 method: 'POST',
-                body: JSON.stringify(formData),
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({
+                    ...formData,
+                    id: Date.now().toString() // Generate unique ID
+                })
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
+            if (response.ok) {
+                console.log('Data added successfully');
+                onClose(); // close the popup
 
-            const data = await response.json();
-            console.log(data);
+                window.location.reload();
+            } else {
+                console.error('Failed to add data');
+            }
         } catch (error) {
-            console.error(error);
+            console.error('Error adding data:', error);
         }
     };
 
-
-
-
-
-  return (
-    <div className="popup">
-      <form onSubmit={handleSubmit}>
-        <h2>Add Series/Movie</h2>
-        <label htmlFor="title">Name:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <label htmlFor="releaseDate">Release Date:</label>
-        <input
-          type="date"
-          id="releaseDate"
-          name="releaseDate"
-          value={formData.releaseDate.slice(0, 10)}
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor="imageUrl">Image URL:</label>
-        <input
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleChange}
-        />
-        <br />
-        <button  type="submit">Add</button>
-      </form>
-      <button onClick={onClose}>Cancel</button>
-    </div>
-  );
+    return (
+        <div className="add-form-overlay">
+            <div className="add-form-container">
+                <h2>Add New Movie/Series</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="title">Title:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            value={formData.title}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="releaseDate">Release Date:</label>
+                        <input
+                            type="date"
+                            id="releaseDate"
+                            name="releaseDate"
+                            value={formData.releaseDate}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="imageUrl">Image URL:</label>
+                        <input
+                            type="url"
+                            id="imageUrl"
+                            name="imageUrl"
+                            value={formData.imageUrl}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className="form-actions">
+                        <button type="submit">Add</button>
+                        <button type="button" onClick={onClose}>Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 };
 
 export default Add;
