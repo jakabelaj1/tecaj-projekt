@@ -6,15 +6,24 @@ const Add = ({ onClose }) => {
     const [formData, setFormData] = useState({
         title: '',
         releaseDate: new Date().toISOString().split('T')[0],
-        imageUrl: ''
+        imageUrl: '',
+        watched: false
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+        const { name, type, checked, value } = e.target;
+        // Handle checkbox differently from other inputs
+        if (type === 'checkbox') {
+            setFormData(prev => ({
+                ...prev,
+                [name]: checked
+            }));
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -82,6 +91,17 @@ const Add = ({ onClose }) => {
                             id="imageUrl"
                             name="imageUrl"
                             value={formData.imageUrl}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="watched">Watched:</label>
+                        <input
+                            type="checkbox"
+                            id="watched"
+                            name="watched"
+                            checked={formData.watched}
                             onChange={handleChange}
                         />
                     </div>
