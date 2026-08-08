@@ -46,20 +46,23 @@ const Library = () => {
         <div className="Library">
             <h1>Library</h1>
             
-            <div>
-                <button onClick={openPopup}>Add Series/Movie</button>
-                {isPopupOpen && <Add onClose={closePopup} />}
+            <div className="library-container">
+                <div className="add-form-container">
+                    <button className="add-button"   onClick={openPopup}>Add Series/Movie</button>
+                    {isPopupOpen && <Add onClose={closePopup} />}
+                </div>
                 
                 <div className="library-items">
                     {data.length === 0 ? (
-                        <p>No items in your library yet.</p>
+                        <p className="no-items-message">No items in your library yet.</p>
                     ) : (
                         data.map((item) => (
-                            <div key={item.id} className="library-item">
-                                <h3>{item.title}</h3>
-                                <p>Release Date: {new Date(item.releaseDate).toLocaleDateString()}</p>
-                                {item.imageUrl && <img src={item.imageUrl} alt={item.title} onError={(e) => { e.target.style.display = 'none'; }} />}
-                                <button onClick={() => removeItem(item.id)}>Remove</button>
+                            <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.imageUrl})` }}>
+                                <div className="item-content">
+                                    <h3>{item.title}</h3>
+                                    <p className="item-release-date">Release Date: {new Date(item.releaseDate).toLocaleDateString()}</p>
+                                </div>
+                                <button className="remove-button" onClick={() => removeItem(item.id)}>Remove</button>
                             </div>
                         ))
                     )}
