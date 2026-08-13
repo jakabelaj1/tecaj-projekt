@@ -1,5 +1,5 @@
 // src/scss/navbar.scss
-$light-bg-color: #e6e6e6;
+$light-bg-color: #ffffff;
 $light-text-color: #000000;
 $light-text-hover:#008000;
 
@@ -15,6 +15,7 @@ $light-text-hover:#008000;
   align-items: center;
   padding: 1rem;
   transition: background-color 0.3s ease;
+  z-index: 1000;
 
 
   }

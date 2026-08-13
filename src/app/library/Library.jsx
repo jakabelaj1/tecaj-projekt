@@ -6,6 +6,7 @@ import Add from "../add-content/Add.jsx";
 const Library = () => {
     const [data, setData] = useState([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [sortBy, setSortBy] = useState('title'); // Default sorting: title
 
     const openPopup = () => setIsPopupOpen(true);
     const closePopup = () => setIsPopupOpen(false);
@@ -69,21 +70,50 @@ const Library = () => {
         }
     };
 
+    // Function to sort items
+    const sortItems = (items, sortBy) => {
+        const sortedItems = [...items];
+        
+        switch (sortBy) {
+            case 'title':
+                return sortedItems.sort((a, b) => a.title.localeCompare(b.title));
+            case 'releaseDateNewest':
+                return sortedItems.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+            case 'releaseDateOldest':
+                return sortedItems.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+            default:
+                return sortedItems;
+        }
+    };
+
+    // Get sorted data
+    const sortedData = sortItems(data, sortBy);
+
     return (
         <div className="Library">
             <h1>Library</h1>
             
             <div className="library-container">
                 <div className="add-form-container">
-                    <button className="add-button"   onClick={openPopup}>Add Series/Movie</button>
+                    <button className="add-button" onClick={openPopup}>Add Series/Movie</button>
+                    <button 
+                        className="sort-button" 
+                        onClick={() => {
+                            if (sortBy === 'title') setSortBy('releaseDateNewest');
+                            else if (sortBy === 'releaseDateNewest') setSortBy('releaseDateOldest');
+                            else setSortBy('title');
+                        }}
+                    >
+                        Sort: {sortBy === 'title' ? 'Title' : sortBy === 'releaseDateNewest' ? 'Newest' : 'Oldest'}
+                    </button>
                     {isPopupOpen && <Add onClose={closePopup} />}
                 </div>
                 
                 <div className="library-items">
-                    {data.length === 0 ? (
+                    {sortedData.length === 0 ? (
                         <p className="no-items-message">No items in your library yet.</p>
                     ) : (
-                        data.map((item) => (
+                        sortedData.map((item) => (
                             <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.imageUrl})` }}>
                                 <div className="item-content">
                                     <h3>{item.title}</h3>
