@@ -82,6 +82,24 @@
       }
     }
 
+    .watched-toggle-button {
+      position: absolute;
+
+      right: 1px;
+      padding: 8px 12px;
+      background-color: rgb(0, 128, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: rgba(0, 128, 0, 0.9);
+      }
+    }
+
     .remove-button {
       position: absolute;
       bottom: 10px;

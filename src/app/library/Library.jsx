@@ -42,6 +42,33 @@ const Library = () => {
         }
     };
 
+    // Function to toggle watched status
+    const toggleWatchedStatus = async (id, currentStatus) => {
+        try {
+            const newStatus = !currentStatus;
+            
+            // Update in JSON Server
+            const response = await fetch(`http://localhost:3000/data/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ watched: newStatus }),
+            });
+        
+            if (response.ok) {
+                // Update local state
+                setData(prevData => 
+                    prevData.map(item => 
+                        item.id === id ? { ...item, watched: newStatus } : item
+                    )
+                );
+            }
+        } catch (error) {
+            console.error('Error updating watched status:', error);
+        }
+    };
+
     return (
         <div className="Library">
             <h1>Library</h1>
@@ -62,6 +89,12 @@ const Library = () => {
                                     <h3>{item.title}</h3>
                                     <p className="item-release-date">Release Date: {new Date(item.releaseDate).toLocaleDateString()}</p>
                                 </div>
+                                <button 
+                                    className="watched-toggle-button" 
+                                    onClick={() => toggleWatchedStatus(item.id, item.watched)}
+                                >
+                                    {item.watched ? 'Mark Unwatched' : 'Mark Watched'}
+                                </button>
                                 <button className="remove-button" onClick={() => removeItem(item.id)}>Remove</button>
                             </div>
                         ))
