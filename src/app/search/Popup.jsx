@@ -19,12 +19,15 @@ const Popup = ({ onClose, item }) => {
     const addToLibrary = async () => {
         try {
             const newLibraryItem = {
-                id: Date.now(), // Simple ID generation
+                id: Date.now(),
                 title: title,
                 releaseDate: releaseDate,
                 posterPath: posterPath,
+                overview: overview,
+                rating: rating,
+                backdropPath: backdropPath,
                 watched: false,
-                // Add any other properties needed
+
             };
 
             const response = await fetch('http://localhost:3000/data', {

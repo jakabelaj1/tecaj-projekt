@@ -24,9 +24,12 @@
     padding: 15px;
     background-color: rgb(255 255 255);
     border-radius: 8px;
-    box-shadow: none;
     margin: 0 auto;
     max-width:1200px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+
   }
 .empty {
   order: 2;

@@ -7,6 +7,8 @@ const Add = ({ onClose }) => {
         title: '',
         releaseDate: new Date().toISOString().split('T')[0],
         posterPath: '',
+        overview:'',
+        rating:'not available',
         watched: false
     });
 
@@ -57,7 +59,7 @@ const Add = ({ onClose }) => {
 
     return (
         <div className="add-form-overlay">
-            <div className="add-form-container">
+            <div className="add-form-container2">
                 <h2>Add New Movie/Series</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -92,6 +94,17 @@ const Add = ({ onClose }) => {
                             name="posterPath"
                             value={formData.posterPath}
                             onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="overview">overview:</label>
+                        <textarea
+                            id="overview"
+                            name="overview"
+                            value={formData.overview}
+                            onChange={handleChange}
+                            rows="3"
                         />
                     </div>
 
