@@ -22,6 +22,7 @@ const Popup = ({ onClose, item }) => {
                 id: Date.now(), // Simple ID generation
                 title: title,
                 releaseDate: releaseDate,
+                posterPath: posterPath,
                 watched: false,
                 // Add any other properties needed
             };
@@ -36,7 +37,7 @@ const Popup = ({ onClose, item }) => {
 
             if (response.ok) {
                 onClose();
-            } 
+            }
         } catch (error) {
             console.error('Error adding to library:', error);
             alert('Error adding to library');

@@ -6,7 +6,7 @@ const Add = ({ onClose }) => {
     const [formData, setFormData] = useState({
         title: '',
         releaseDate: new Date().toISOString().split('T')[0],
-        imageUrl: '',
+        posterPath: '',
         watched: false
     });
 
@@ -85,12 +85,12 @@ const Add = ({ onClose }) => {
                     </div>
                     
                     <div className="form-group">
-                        <label htmlFor="imageUrl">Image URL:</label>
+                        <label htmlFor="posterPath">poster url:</label>
                         <input
                             type="url"
-                            id="imageUrl"
-                            name="imageUrl"
-                            value={formData.imageUrl}
+                            id="posterPath"
+                            name="posterPath"
+                            value={formData.posterPath}
                             onChange={handleChange}
                         />
                     </div>

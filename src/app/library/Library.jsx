@@ -114,7 +114,7 @@ const Library = () => {
                         <p className="no-items-message">No items in your library yet.</p>
                     ) : (
                         sortedData.map((item) => (
-                            <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.imageUrl})` }}>
+                            <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.posterPath})` }}>
                                 <div className="item-content">
                                     <h3>{item.title}</h3>
                                     <p className="item-release-date">Release Date: {new Date(item.releaseDate).toLocaleDateString()}</p>
