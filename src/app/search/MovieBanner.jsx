@@ -1,19 +1,17 @@
 import React from 'react';
 
 const MovieBanner = ({ result, onClick }) => {
-    // Handle both movies and TV shows
-    const isMovie = result.media_type === 'movie';
     const title = result.title || result.name;
     const releaseDate = result.release_date || result.first_air_date;
-    const posterPath = result.poster_path 
+    const posterPath = result.poster_path
         ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
         : '/placeholder-image.jpg'; // Fallback image
 
     return (
-        <div className="movie-banner" onClick={onClick}>
-            <img 
-                src={posterPath} 
-                alt={title} 
+        <div className="movie-poster" onClick={onClick}>
+            <img
+                src={posterPath}
+                alt={title}
                 onError={(e) => {
                     e.target.src = '/placeholder-image.jpg';
                 }}

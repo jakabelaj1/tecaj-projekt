@@ -3,8 +3,7 @@ import React from 'react';
 const Popup = ({ onClose, item }) => {
     if (!item) return null;
 
-    // Handle both movies and TV shows
-    const isMovie = item.media_type === 'movie';
+
     const title = item.title || item.name;
     const releaseDate = item.release_date || item.first_air_date;
     const posterPath = item.poster_path 
@@ -40,6 +39,9 @@ const Popup = ({ onClose, item }) => {
                         {releaseDate && <p><strong>Release Date:</strong> {releaseDate}</p>}
                         <p><strong>Rating:</strong> {rating}</p>
                         <p><strong>Overview:</strong> {overview}</p>
+                        <button className="add-to-library-button" >
+                            Add to Library
+                        </button>
                     </div>
                 </div>
             </div>

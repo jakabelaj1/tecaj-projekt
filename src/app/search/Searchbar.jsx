@@ -7,7 +7,7 @@ const SearchBar = ({ query, onQueryChange, onSubmit }) => {
                 type="text" 
                 value={query} 
                 onChange={(e) => onQueryChange(e.target.value)} 
-                placeholder="Search IMDb..." 
+                placeholder="Search TMBD..."
                 className="search-input"
             />
             <button type="submit" className="search-button">Search</button>
