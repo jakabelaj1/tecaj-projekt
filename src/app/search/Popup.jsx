@@ -15,6 +15,35 @@ const Popup = ({ onClose, item }) => {
     const overview = item.overview || 'No description available.';
     const rating = item.vote_average ? `${item.vote_average.toFixed(1)}/10` : 'N/A';
 
+
+    const addToLibrary = async () => {
+        try {
+            const newLibraryItem = {
+                id: Date.now(), // Simple ID generation
+                title: title,
+                releaseDate: releaseDate,
+                watched: false,
+                // Add any other properties needed
+            };
+
+            const response = await fetch('http://localhost:3000/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newLibraryItem),
+            });
+
+            if (response.ok) {
+                onClose();
+            } 
+        } catch (error) {
+            console.error('Error adding to library:', error);
+            alert('Error adding to library');
+        }
+    };
+
+
     return (
         <div className="popup-overlay" onClick={onClose}>
             <div className="popup-content" onClick={(e) => e.stopPropagation()}>
@@ -39,7 +68,7 @@ const Popup = ({ onClose, item }) => {
                         {releaseDate && <p><strong>Release Date:</strong> {releaseDate}</p>}
                         <p><strong>Rating:</strong> {rating}</p>
                         <p><strong>Overview:</strong> {overview}</p>
-                        <button className="add-to-library-button" >
+                        <button className="add-to-library-button" onClick={addToLibrary}>
                             Add to Library
                         </button>
                     </div>
