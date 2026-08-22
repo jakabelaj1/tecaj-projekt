@@ -96,6 +96,7 @@ const Library = () => {
             <div className="library-container">
                 <div className="add-form-container">
                     <button className="add-button" onClick={openPopup}>Add Series/Movie</button>
+                    <div className="empty"></div>
                     <button 
                         className="sort-button" 
                         onClick={() => {
@@ -117,7 +118,7 @@ const Library = () => {
                             <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.posterPath})` }}>
                                 <div className="item-content">
                                     <h3>{item.title}</h3>
-                                    <p className="item-release-date">Release Date: {new Date(item.releaseDate).toLocaleDateString()}</p>
+                                    <p className="item-release-date">{new Date(item.releaseDate).toLocaleDateString()}</p>
                                 </div>
                                 <button 
                                     className="watched-toggle-button" 
