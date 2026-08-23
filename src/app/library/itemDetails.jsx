@@ -1,8 +1,6 @@
-
 import React from 'react';
 import './itemDetails.scss';
-
-const ItemDetails = ({ item, onClose }) => {
+const ItemDetails = ({ item, onClose, onRemove}) => {
     if (!item) return null;
 
     return (
@@ -31,6 +29,8 @@ const ItemDetails = ({ item, onClose }) => {
                         <p><strong>Watched:</strong> {item.watched ? 'Yes' : 'No'}</p>
                         <h3>Overview</h3>
                         <p>{item.overview}</p>
+
+                            <button className="remove-button" onClick={() => {onRemove(item.id);onClose();}}>Remove from Library</button>
                     </div>
                 </div>
             </div>

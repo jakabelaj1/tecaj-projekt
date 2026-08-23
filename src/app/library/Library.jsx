@@ -138,7 +138,12 @@ const Library = () => {
                     )}
                 </div>
             </div>
-            {selectedItem && <ItemDetails item={selectedItem} onClose={closeItemDetails} />}
+            {selectedItem &&
+                <ItemDetails
+                    item={selectedItem}
+                    onClose={closeItemDetails}
+                    onRemove={removeItem}
+                    onToggleWatched={toggleWatchedStatus}/>}
         </div>
     );
 };
