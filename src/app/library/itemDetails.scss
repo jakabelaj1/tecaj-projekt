@@ -117,7 +117,23 @@
       }
     
   }
-}}  
+}}
+//hide scrollbar
+@media (max-height: 768px) {
+  .item-details-overlay {
+    .item-details-content {
+      overflow-y: auto;
 
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+}
 
 
