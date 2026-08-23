@@ -2,14 +2,20 @@
 import React, {useEffect, useState} from 'react';
 import "./library.scss";
 import Add from "../add-content/Add.jsx";
+import ItemDetails from "./itemDetails.jsx";
 
 const Library = () => {
     const [data, setData] = useState([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [sortBy, setSortBy] = useState('title'); // Default sorting: title
+    const [selectedItem, setSelectedItem] = useState(null);
+
 
     const openPopup = () => setIsPopupOpen(true);
     const closePopup = () => setIsPopupOpen(false);
+    const openItemDetails = (item) => setSelectedItem(item);
+    const closeItemDetails = () => setSelectedItem(null);
+
 
     // Load data from JSON Server when component mounts
     useEffect(() => {
@@ -115,8 +121,8 @@ const Library = () => {
                         <p className="no-items-message">No items in your library yet.</p>
                     ) : (
                         sortedData.map((item) => (
-                            <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.posterPath})` }}>
-                                <div className="item-content">
+                            <div key={item.id} className="library-item" style={{ backgroundImage: `url(${item.posterPath})` }}  onClick={() => openItemDetails(item)}>
+                            <div className="item-content">
                                     <h3>{item.title}</h3>
                                     <p className="item-release-date">{new Date(item.releaseDate).toLocaleDateString()}</p>
                                 </div>
@@ -132,6 +138,7 @@ const Library = () => {
                     )}
                 </div>
             </div>
+            {selectedItem && <ItemDetails item={selectedItem} onClose={closeItemDetails} />}
         </div>
     );
 };
