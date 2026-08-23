@@ -126,13 +126,10 @@ const Library = () => {
                                     <h3>{item.title}</h3>
                                     <p className="item-release-date">{new Date(item.releaseDate).toLocaleDateString()}</p>
                                 </div>
-                                <button 
-                                    className="watched-toggle-button" 
-                                    onClick={() => toggleWatchedStatus(item.id, item.watched)}
-                                >
+                                <button className="watched-toggle-button" onClick={(e) => {e.stopPropagation();toggleWatchedStatus(item.id, item.watched)}}>
                                     {item.watched ? 'Mark Unwatched' : 'Mark Watched'}
                                 </button>
-                                <button className="remove-button" onClick={() => removeItem(item.id)}>Remove</button>
+                                <button className="remove-button" onClick={(e) => {e.stopPropagation();removeItem(item.id)}}>Remove</button>
                             </div>
                         ))
                     )}
