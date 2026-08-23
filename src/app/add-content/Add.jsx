@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import './add.scss';
 
 const Add = ({ onClose }) => {
+    const defaultPath = 'https://www.shutterstock.com/image-vector/no-image-vector-symbol-missing-600w-2212906869.jpg';
+    
     const [formData, setFormData] = useState({
         title: '',
         releaseDate: new Date().toISOString().split('T')[0],
@@ -40,6 +42,7 @@ const Add = ({ onClose }) => {
                 },
                 body: JSON.stringify({
                     ...formData,
+                    posterPath: formData.posterPath || defaultPath,
                     id: Date.now().toString() // Generate unique ID
                 })
             });
