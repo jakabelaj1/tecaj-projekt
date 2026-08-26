@@ -1,24 +1,4 @@
 {
-  "data": [
-    {
-      "title": "test ",
-      "releaseDate": "2026-08-22",
-      "posterPath": "",
-      "overview": "fdhjgdfjd",
-      "rating": "not available",
-      "watched": true,
-      "id": "1TC0gqTYAVI"
-    },
-    {
-      "id": "xGP6NZ5X5Cw",
-      "title": "Star Wars Rebels",
-      "releaseDate": "2014-10-13",
-      "posterPath": "https://image.tmdb.org/t/p/w500/eLrScs6Bs26JMcS8hiZhf7YRROr.jpg",
-      "overview": "Set between the events of Star Wars: Episodes III and IV, the story unfolds during a dark time when the evil Galactic Empire is tightening its grip of power on the galaxy. Imperial forces have occupied a remote planet and are ruining the lives of its people. The motley but clever crew of the starship Ghost — cowboy Jedi Kanan, ace pilot Hera, street-smart teenager Ezra, the “muscle” Zeb, warrior firebrand Sabine, and cantankerous old astromech droid Chopper — is among a select few who are brave enough to stand against the Empire. Together, they will face threatening new villains, encounter colorful adversaries, embark on thrilling adventures, and become heroes with the power to ignite a rebellion.",
-      "rating": "7.7/10",
-      "backdropPath": "https://image.tmdb.org/t/p/w1280/8BNjxMJMFp0BgqMh4PyuwZMXxh1.jpg",
-      "watched": true
-    }
-  ],
+  "data": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
