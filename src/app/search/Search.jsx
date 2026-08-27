@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from './Searchbar';
 import MovieBanner from './MovieBanner';
 import Popup from './Popup';
 import './Search.scss';
