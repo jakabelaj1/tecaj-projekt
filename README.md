@@ -51,7 +51,7 @@ This will start the Vite development server.
 ### Database Server
 To run the local database server:
 
-run ``json-server data.json``
+run ``json-server src/data.json``
 
 
 The application will be accessible at `http://localhost:5173` and the database will be available at `http://localhost:3000`.
